@@ -2,6 +2,7 @@ package com.scaler.taskmanager.controllers;
 
 import com.scaler.taskmanager.dtos.CreateTaskDTO;
 import com.scaler.taskmanager.dtos.ErrorResponseDTO;
+import com.scaler.taskmanager.dtos.UpdateTaskDTO;
 import com.scaler.taskmanager.entities.TaskEntity;
 import com.scaler.taskmanager.service.TaskService;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,16 @@ public class TasksController {
 
         return ResponseEntity.ok(task);
     }
+    @PatchMapping("/{id}")
+    public ResponseEntity<TaskEntity>  updateTask(@PathVariable("id") Integer id, @RequestBody UpdateTaskDTO body) throws ParseException{
+        var task= taskService.updateTask(id, body.getDescription(), body.getDeadline(), body.getStatus());
+        if(task==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(task);
+    }
+
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleErrors(Exception e){
         if(e instanceof ParseException){
