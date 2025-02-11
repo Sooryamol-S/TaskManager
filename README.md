@@ -36,7 +36,7 @@ A **Task Manager API** built using **Spring Boot** to manage tasks with notes. I
 ##  Setup & Run
 1. Clone the repo:  
    ```sh
-   git clone <your-repo-link>
+   git clone https://github.com/Sooryamol-S/TaskManager.git
    cd task-manager
 2.Run the Spring Boot app:
   ```sh
